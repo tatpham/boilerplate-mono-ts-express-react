@@ -1,0 +1,34 @@
+version: "3.7"
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    depends_on: ["db"]
+    env_file:
+      - ./env/postgres.env
+    image: pt_backend
+    ports:
+      - 5000:5000
+    volumes: []
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    depends_on: ["backend"]
+    env_file:
+      - ./env/frontend.env
+    image: pt_frontend
+    ports:
+      - 3000:3000
+    volumes: []
+  db:
+    depends_on: []
+    env_file:
+      - ./misc/env/postgres.env
+    image: postgres:11.5
+    ports:
+      - 5432:5432
+    volumes: []
+volumes: {}

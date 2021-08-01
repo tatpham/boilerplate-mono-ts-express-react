@@ -1,0 +1,55 @@
+version: "3.7"
+
+services:
+  backend:
+    name: backend-container
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    depends_on: ["db"]
+    env_file:
+      - ./env/postgres.env
+      - ./env/backend.dev.env
+    image: pt_backend_dev
+    ports:
+      - 5000:5000
+      - 9229:9229
+    volumes:
+      - ./backend:/app
+  cypress:
+    name: cypress-container
+    image: cypress/included:4.11.0
+    command: npx cypress run --config-file config/cypress.json
+    depends_on:
+      - frontend
+    env_file:
+      - ./frontend/cypress/.env
+    network_mode: host
+    volumes:
+      - ./frontend:/app
+    working_dir: /app
+  frontend:
+    name: frontend-container
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    depends_on: ["backend"]
+    env_file:
+      - ./env/frontend.env
+      - ./env/frontend.dev.env
+    image: pt_frontend_dev
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend:/app
+  db:
+    depends_on: []
+    env_file:
+      - ./env/postgres.env
+    image: postgres:12
+    ports:
+      - 5432:5432
+    volumes:
+      - db_data:/var/lib/postgresql/data
+volumes:
+  db_data: {}

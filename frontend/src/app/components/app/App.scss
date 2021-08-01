@@ -1,0 +1,17 @@
+@import 'src/styles/uikit';
+
+.App__Header {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-size: calc(10px + 2vmin);
+  min-height: 100vh;
+}
+
+h1 {
+  @apply text-xl;
+}
+
+h2 {
+  @apply text-lg;
+}

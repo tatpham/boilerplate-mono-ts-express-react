@@ -1,0 +1,14 @@
+{
+  "name": "cypress",
+  "version": "1.0.0",
+  "description": "Node environment for running cypress locally",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "cypress": "^7.5.0"
+  },
+  "devDependencies": {
+    "cypress-wait-until": "^1.7.1"
+  }
+}

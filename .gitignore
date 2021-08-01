@@ -1,0 +1,6 @@
+.vscode
+logs/*
+
+/frontend/cypress/screenshots
+/frontend/cypress/videos
+/frontend/cypress/node_modules

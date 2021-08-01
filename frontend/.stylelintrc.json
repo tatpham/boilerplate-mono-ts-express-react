@@ -1,0 +1,31 @@
+{
+    "plugins": [
+        "stylelint-scss"
+    ],
+    "extends": [
+        "stylelint-config-standard",
+        "stylelint-config-sass-guidelines"
+    ],
+    "ignoreFiles": [
+        "**/*.js"
+    ],
+    "rules": {
+        "at-rule-no-unknown": null,
+        "scss/at-rule-no-unknown": true,
+        "selector-class-pattern": [
+            "^[a-zA-Z0-9_]+$",
+            {
+                "message": "Selector should be written with letters, numbers and underscores (selector-class-pattern)"
+            }
+        ],
+        "selector-pseudo-class-no-unknown": [
+            true,
+            {
+                "ignorePseudoClasses": [
+                    "global",
+                    "local"
+                ]
+            }
+        ]
+    }
+}
